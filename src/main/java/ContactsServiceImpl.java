@@ -6,6 +6,15 @@ import java.util.List;
 public class ContactsServiceImpl implements ContactsService {
 
     private int maxSize;
+    private ContactsDAOImpl contactsDAOInstance;
+
+    public ContactsDAOImpl getContactsDAOInstance() {
+        return contactsDAOInstance;
+    }
+
+    public void setContactsDAOInstance(ContactsDAOImpl contactsDAOInstance) {
+        this.contactsDAOInstance = contactsDAOInstance;
+    }
 
     public void setMaxSize(int maxSize){
         this.maxSize = maxSize;
@@ -16,28 +25,28 @@ public class ContactsServiceImpl implements ContactsService {
     }
 
     @Override
-    public void addContact(Contact contact, ContactsDAOImpl contactsDAOInstance) {
+    public void addContact(Contact contact) {
         if (contactsDAOInstance.getListOfContacts().size()<=maxSize){
             contactsDAOInstance.setContact(contact);
         }
         else{
-            this.deleteContact(contactsDAOInstance.getListOfContacts().get(0), contactsDAOInstance);
+            this.deleteContact(contactsDAOInstance.getListOfContacts().get(0));
             contactsDAOInstance.setContact(contact);
         }
     }
 
     @Override
-    public void deleteContact(Contact contact, ContactsDAOImpl contactsDAOInstance) {
+    public void deleteContact(Contact contact) {
         contactsDAOInstance.removeContact(contact);
     }
 
     @Override
-    public List<Contact> getAllContacts(ContactsDAOImpl contactsDAOInstance) {
+    public List<Contact> getAllContacts() {
         return contactsDAOInstance.getListOfContacts();
     }
 
     @Override
-    public void clearAll(ContactsDAOImpl contactsDAOInstance) {
+    public void clearAll() {
         contactsDAOInstance.getListOfContacts().clear();
     }
 

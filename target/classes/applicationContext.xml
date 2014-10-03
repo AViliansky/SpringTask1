@@ -33,6 +33,7 @@
 
     <bean class="ContactsServiceImpl" id="ContactsServiceImpl1">
         <property name="maxSize" value="${maxSize}"/>
+        <property name="contactsDAOInstance" ref="ContactsDAOImpl1"/>
     </bean>
 
 

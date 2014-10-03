@@ -38,4 +38,5 @@ public class Contact {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }
